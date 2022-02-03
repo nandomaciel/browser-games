@@ -37,15 +37,37 @@ window.addEventListener('load', function() {
             this.height = 200;
             this.x = 10;
             this.y = this.gameHeight - this.height;
+            this.image = document.getElementById('playerImage');
+            this.frameX = 0;
+            this.frameY = 0;
+            this.speed = 0;
         }
 
         draw(context) {
             context.fillStyle = 'white';
             context.fillRect(this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height,
+                this.width, this.height, this.x, this.y, this.width, this.height);
         }
 
-        update() {
-            this.x++;
+        update(input) {
+            // horizontal movement
+            this.x += this.speed;
+            if(input.keys.indexOf('ArroRight') > -1) {
+                this.speed = 5;
+            } else if(input.keys.indexOf('ArrowLeft') > -1) {
+                this.speed = -5;
+            } else if(input.keys.indexOf('ArrowUp') > -1) {
+                this.speed = -5;
+            } else {
+                this.speed = 0;                
+            }
+
+            if(this.x < 0) {
+                this.x = 0;  
+            } else if (this.x > this.gameWidth - this.width) {
+                this.x = this.gameWidth - this.width;
+            }
         }
     }
 
@@ -67,7 +89,7 @@ window.addEventListener('load', function() {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         player.draw(ctx);
-        player.update();
+        player.update(input);
         requestAnimationFrame(animate);
     }
 
