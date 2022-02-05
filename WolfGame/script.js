@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
     const ctx = canvas.getContext('2d');
     canvas.width = 800;
     canvas.height = 720;
-
+    let enemies = [];
     class InputHandle {
         constructor(){
             this.keys = [];
@@ -15,11 +15,10 @@ window.addEventListener('load', function() {
                     && this.keys.indexOf(e.key) === -1){
                     this.keys.push(e.key);
                 }
-                console.log(e.key, this.keys);
             });
 
             window.addEventListener('keyup', e => {
-                if(e.key === 'ArrowDown' || 
+                if( e.key === 'ArrowDown' || 
                     e.key === 'ArrowUp' ||
                     e.key === 'ArrowLeft' ||
                     e.key === 'ArrowRight') {
