@@ -1,9 +1,10 @@
 window.addEventListener('load', function() {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 800;
+    canvas.width = 1200;
     canvas.height = 720;
     let enemies = [];
+
     class InputHandle {
         constructor(){
             this.keys = [];
@@ -54,7 +55,7 @@ window.addEventListener('load', function() {
 
         update(input) {
             this.x += this.speed;
-            if(input.keys.indexOf('ArroRight') > -1) {
+            if(input.keys.indexOf('ArrowRight') > -1) {
                 this.speed = 5;
             } else if(input.keys.indexOf('ArrowLeft') > -1) {
                 this.speed = -5;
@@ -67,7 +68,7 @@ window.addEventListener('load', function() {
             // horizontal movement
             if(this.x < 0) {
                 this.x = 0;  
-            } else if (this.x > this.gameWidth - this.width) {
+            } else if (this.x > this.gameWidth - this.width) { 
                 this.x = this.gameWidth - this.width;
             }
 
