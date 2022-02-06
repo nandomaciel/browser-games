@@ -154,8 +154,8 @@ window.addEventListener('load', function() {
             this.image = document.getElementById('enemyImage');
             this.x = this.gameWidth;
             this.y = this.gameHeight - this.height;
-            this.frameX = 0
-            this.maxFrame = 5;
+            this.frameX = 0;
+            this.maxFrame = 4;
             this.fps = 20;
             this.frameTimer = 0;
             this.frameInterval = 1000/this.fps;
@@ -175,10 +175,12 @@ window.addEventListener('load', function() {
                 } else {
                     this.frameX++;
                 }
+                this.frameTimer = 0;
             } else {
                 this.frameTimer += deltaTime;
             }
             this.x -= this.speed;
+
             if(this.x < 0 - this.width) {
                 this.markedForDeletion = true;
                 score++;
@@ -200,7 +202,7 @@ window.addEventListener('load', function() {
             enemy.draw(ctx);
             enemy.update(deltaTime);
         });
-        enemies = enemies.filter(enemy => !enemy.markedForDeletion);
+       enemies = enemies.filter(enemy => !enemy.markedForDeletion);
     }
 
     function displayStatusTest(context) {
